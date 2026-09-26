@@ -11,9 +11,8 @@ const products = [
 function Hero() {
   return (
     <>
-      {/* بخش هیرو */}
-      <section className="px-4 md:px-10 mt-4">
-        <div className="relative w-full h-[280px] sm:h-[350px] md:h-[400px] overflow-hidden rounded-xl">
+      <section className="px-4 md:px-10 mt-4 mt-1">
+        <div className="relative [w-full] sm:h-[450px]  md:h-[380px] overflow-hidden rounded-xl">
           <img
             src="/img/img01.jpg"
             alt="Skincare products"
@@ -36,8 +35,8 @@ function Hero() {
       </section>
 
       {/* بخش محصولات */}
-      <section className="px-4 md:px-10 mt-10 md:mt-16 mb-16">
-        <div className="mb-6">
+      <section className="px-4 md:px-10 mt-10 md:mt-5 mb-16">
+        <div className="mb-5">
           <h2 className="text-lg md:text-xl font-semibold text-gray-800">Featured Products</h2>
           <p className="text-xs md:text-sm text-gray-500 mt-1">Explore our best-selling skincare essentials.</p>
         </div>

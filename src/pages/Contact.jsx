@@ -19,19 +19,19 @@ function Contact() {
           <input
             type="text"
             placeholder="Your name"
-            className="w-full rounded-xl border bg-gray-200 border-gray-400 px-4 py-3 outline-none focus:border-black"
+            className="w-full rounded-xl border bg-gray-200 border-gray-400 hover:bg-gray-300 px-4 py-3 outline-none focus:border-black"
           />
 
           <input
             type="email"
             placeholder="Your email"
-            className="w-full rounded-xl border bg-gray-200 border-gray-400 px-4 py-3 outline-none focus:border-black"
+            className="w-full rounded-xl border bg-gray-200 border-gray-400 hover:bg-gray-300 px-4 py-3 outline-none focus:border-black"
           />
 
           <textarea
             placeholder="Your message"
             rows="5"
-            className="w-full resize-none rounded-xl border bg-gray-200 border-gray-400 px-4 py-3 outline-none focus:border-black"
+            className="w-full resize-none rounded-xl border bg-gray-200 border-gray-400 hover:bg-gray-300 px-4 py-3 outline-none focus:border-black"
           />
 
           <button

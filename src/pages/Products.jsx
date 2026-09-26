@@ -36,6 +36,20 @@ const products = [
         price: "$32",
         image: "/img/img07.jpg",
     },
+    {
+        name: "Glowly skin",
+        description: "A simple skincare product for your daily routine.",
+        price: "$32",
+        image: "/img/img14.jpg",
+    },
+    {
+        name: "Good Filling",
+        description: "A simple skincare product for your daily routine.",
+        price: "$32",
+        image: "/img/img15.jpg",
+    },
+
+
 ];
 
 function Products() {
