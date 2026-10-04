@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ShoppingBag } from "lucide-react";
+import { useCart } from "../CartContext"
 
 const products = [
   { name: "Gentle Cleanser", price: "$24", image: "/img/img02.jpg" },
@@ -9,6 +10,7 @@ const products = [
 ];
 
 function Hero() {
+  const { addToCart } = useCart();
   return (
     <>
       <section className="px-4 md:px-10 mt-4 mt-1">
@@ -52,7 +54,11 @@ function Hero() {
                   alt={product.name}
                   className="h-36 sm:h-44 md:h-48 w-full object-cover transition duration-300 group-hover:scale-105"
                 />
-                <button className="absolute bottom-2 right-2 bg-white/80 backdrop-blur-md p-1.5 rounded-full hover:bg-black hover:text-white transition">
+
+                <button
+                  onClick={() => addToCart(product)}
+                  className="absolute bottom-2 right-2 bg-white/80 backdrop-blur-md p-1.5 rounded-full
+                    hover:bg-gray-300 hover:text-black transition">
                   <ShoppingBag size={14} />
                 </button>
               </div>
