@@ -86,7 +86,7 @@ function Contact() {
             />
           </div>
 
-          {/* دکمه ارسال: فقط وقتی همه قوانین true باشند فعال می‌شود */}
+          
           <button
             type="submit"
             disabled={!rules.nameValid || !rules.emailValid || !rules.messageNotEmpty}

@@ -5,7 +5,6 @@ import Home from "./pages/Home";
 import Products from "./pages/Products";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-import 'tailwindcss/theme.css'
 import { CartProvider } from "./CartContext";
 import CartPage from "./pages/CartPage"; 
 function App() {

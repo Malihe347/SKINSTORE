@@ -23,12 +23,14 @@ function Hero() {
           <div className="absolute inset-0 bg-black/20" />
 
           <div className="absolute bottom-6 left-6 md:bottom-10 md:left-10 z-10">
-            <a
-              href="/products"
+
+            <Link
+              to="/products"
               className="inline-flex items-center px-3 py-1.5 md:px-4 md:py-2 text-xs md:text-sm text-white bg-white/10 backdrop-blur-md border border-white/30 rounded-full transition-all hover:bg-white/30 hover:scale-105"
             >
               Explore Products
-            </a>
+            </Link>
+
             <p className="text-white text-xs md:text-sm mt-2 font-medium">
               Click the button to view products.
             </p>

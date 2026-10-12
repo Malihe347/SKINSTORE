@@ -25,10 +25,10 @@ export default function NavBar() {
         <NavLink to="/contact" className={navLinkStyle}>Contact</NavLink>
       </div>
 
-      {/* Right side: اضافه شدن کلاس flex برای چیدمان کنار هم */}
+    
       <div className="flex items-center gap-3">
         
-        {/* Shopping Cart: در موبایل و دسکتاپ دیده می‌شود */}
+     
         <Link to="/cart" className="relative p-2 hover:bg-gray-100 rounded-full">
           <ShoppingBag size={20} />
           {cartCount > 0 && (

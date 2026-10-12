@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Footer() {
   return (
     <footer className="mt-5 bg-green-950 text-white px-10 py-2 border-2 border-white/10 rounded-lg gap-y-2 mb-3 mx-4">
@@ -31,23 +33,37 @@ function Footer() {
           </div>
 
           {/* ستون لینک‌ها */}
+
           <div className="flex flex-col space-y-4 hidden md:block">
             <h3 className="text-lg font-medium text-white">Quick Links</h3>
             <ul className="text-sm text-gray-400 space-y-2">
-              <li><a href="/products" className="hover:text-white transition-colors">All Products</a></li>
-              <li><a href="/about" className="hover:text-white transition-colors">Our Story</a></li>
-              <li><a href="/contact" className="hover:text-white transition-colors">Contact Us</a></li>
+              <li>
+                <Link to="/products" className="hover:text-white transition-colors">
+                  All Products
+                </Link>
+              </li>
+              <li>
+                <Link to="/about" className="hover:text-white transition-colors">
+                  Our Story
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="hover:text-white transition-colors">
+                  Contact Us
+                </Link>
+              </li>
             </ul>
           </div>
+
 
           {/* ستون خبرنامه */}
           <div>
             <div className="space-y-4 mt-3">
-            <h3 className="text-lg font-bold text-white sm:flex-row tracking-wider">Stay Updated</h3>
-          </div>
+              <h3 className="text-lg font-bold text-white sm:flex-row tracking-wider">Stay Updated</h3>
+            </div>
             <div className="flex mt-2 justify-center md:justify-start">
-                <form className="flex items-center w-full max-w-[150px] ">
-                
+              <form className="flex items-center w-full max-w-[150px] ">
+
                 <label htmlFor="email" className="sr-only">
                 </label>
 
