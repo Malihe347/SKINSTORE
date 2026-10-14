@@ -1,40 +1,65 @@
 import { useState, useEffect } from 'react';
 
 function Contact() {
-  // ۱. تعریف استیت‌ها برای مقادیر فیلدها
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: ""
   });
 
-  // ۲. تعریف استیت‌ها برای وضعیت قوانین (Rules)
   const [rules, setRules] = useState({
     nameValid: false,
     emailValid: false,
     messageNotEmpty: false
   });
 
-  // ۳. تابع اصلی برای چک کردن قوانین (هر بار که formData تغییر کند اجرا می‌شود)
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
   useEffect(() => {
     const nameRegex = /^[a-zA-Z\u0600-\u06FF\s]*$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     setRules({
-      // نام درست است اگر: خالی نباشد AND فقط حروف باشد
       nameValid: formData.name.length > 0 && nameRegex.test(formData.name),
-      
-      // ایمیل درست است اگر: فرمت ایمیل رعایت شده باشد
       emailValid: emailRegex.test(formData.email),
-      
-      // پیام درست است اگر: حداقل یک کاراکتر داشته باشد
       messageNotEmpty: formData.message.trim().length > 0
     });
-  }, [formData]); // وابستگی به formData باعث می‌شود با هر تایپ، قوانین دوباره چک شوند
+  }, [formData]); 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!rules.nameValid || !rules.emailValid || !rules.messageNotEmpty) return;
+
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      const response = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({ name: "", email: "", message: "" }); 
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -46,7 +71,19 @@ function Contact() {
           <h1 className="text-3xl font-semibold text-gray-900">We'd love to hear from you</h1>
         </div>
 
-        <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+        {/* پیام‌های موفقیت یا خطا */}
+        {submitStatus === 'success' && (
+          <div className="mb-6 p-4 bg-green-50 border border-green-200 text-green-800 rounded-lg text-sm">
+            ✓ Your message has been sent successfully!
+          </div>
+        )}
+        {submitStatus === 'error' && (
+          <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-800 rounded-lg text-sm">
+            ✕ Something went wrong. Please try again later.
+          </div>
+        )}
+
+        <form className="space-y-5" onSubmit={handleSubmit}>
           {/* Name Input */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
@@ -86,26 +123,24 @@ function Contact() {
             />
           </div>
 
-          
           <button
             type="submit"
-            disabled={!rules.nameValid || !rules.emailValid || !rules.messageNotEmpty}
+            disabled={!rules.nameValid || !rules.emailValid || !rules.messageNotEmpty || isSubmitting}
             className={`w-full rounded-lg py-3 text-sm font-medium text-white transition-all active:scale-[0.98] ${
-              !rules.nameValid || !rules.emailValid || !rules.messageNotEmpty 
+              !rules.nameValid || !rules.emailValid || !rules.messageNotEmpty || isSubmitting
               ? 'bg-gray-400 cursor-not-allowed' 
               : 'bg-green-950 hover:bg-green-900'
             }`}
           >
-            Send Message
+            {isSubmitting ? 'Sending...' : 'Send Message'}
           </button>
 
-          {/* --- بخش قوانین با تیک و ضربدر (The Dynamic Checklist) --- */}
+          {/* Dynamic Checklist */}
           <div className="mt-8 pt-6 border-t border-gray-100">
             <p className="text-sm font-medium text-gray-900 mb-3">
               Submission Requirements
             </p>
             <ul className="space-y-2">
-              {/* قانون اول */}
               <li className="flex items-center text-sm">
                 <span className={`mr-2 ${rules.nameValid ? 'text-green-600' : 'text-red-500'}`}>
                   {rules.nameValid ? '✓' : '✕'}
@@ -115,7 +150,6 @@ function Contact() {
                 </span>
               </li>
 
-              {/* قانون دوم */}
               <li className="flex items-center text-sm">
                 <span className={`mr-2 ${rules.emailValid ? 'text-green-600' : 'text-red-500'}`}>
                   {rules.emailValid ? '✓' : '✕'}
@@ -125,7 +159,6 @@ function Contact() {
                 </span>
               </li>
 
-              {/* قانون سوم */}
               <li className="flex items-center text-sm">
                 <span className={`mr-2 ${rules.messageNotEmpty ? 'text-green-600' : 'text-red-500'}`}>
                   {rules.messageNotEmpty ? '✓' : '✕'}
@@ -136,8 +169,6 @@ function Contact() {
               </li>
             </ul>
           </div>
-          {/* ----------------------------------------------------- */}
-
         </form>
       </div>
     </section>

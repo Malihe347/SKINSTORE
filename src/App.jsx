@@ -7,6 +7,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import { CartProvider } from "./CartContext";
 import CartPage from "./pages/CartPage"; 
+import CheckoutPage from "./components/CheckoutPage";
 function App() {
   return (
     <CartProvider>
@@ -18,6 +19,8 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
             <Route path="/cart" element={<CartPage />} />
+             <Route path="/checkout" element={<CheckoutPage />} />
+            <Route path="*" element={<div className="p-10 text-center text-gray-500">Page not found.</div>} />
         </Routes>
       </BrowserRouter>
     </CartProvider>

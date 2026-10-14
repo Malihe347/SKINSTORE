@@ -38,19 +38,19 @@ function Hero() {
         </div>
       </section>
 
-      {/* بخش محصولات */}
+      {/* products*/}
       <section className="px-4 md:px-10 mt-10 md:mt-5 mb-16">
         <div className="mb-5">
           <h2 className="text-lg md:text-xl font-semibold text-gray-800">Featured Products</h2>
           <p className="text-xs md:text-sm text-gray-500 mt-1">Explore our best-selling skincare essentials.</p>
         </div>
 
-        {/* گرید محصولات: در موبایل 2 ستونه (grid-cols-2)، در تبلت/دسکتاپ 4 ستونه (lg:grid-cols-4) */}
+  
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
           {products.map((product) => (
             <div key={product.name} className="group bg-white border border-gray-100 rounded-xl p-2.5 shadow-sm">
               <div className="relative overflow-hidden rounded-lg bg-gray-50">
-                {/* تنظیم ارتفاع تصویر متناسب با سایز صفحه برای جلوگیری از کشیدگی */}
+           
                 <img
                   src={product.image}
                   alt={product.name}
