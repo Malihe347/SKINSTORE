@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 
 import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
@@ -11,7 +11,7 @@ import CheckoutPage from "./components/CheckoutPage";
 function App() {
   return (
     <CartProvider>
-      <BrowserRouter>
+      <HashRouter>
         <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -22,7 +22,7 @@ function App() {
              <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="*" element={<div className="p-10 text-center text-gray-500">Page not found.</div>} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </CartProvider>
 
   );
